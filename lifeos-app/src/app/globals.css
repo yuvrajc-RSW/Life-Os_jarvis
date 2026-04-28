@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ============================================================
+   LIFEOS + JARVIS — DESIGN TOKEN SYSTEM
+   Source: CLAUDE.md / LifeOS Complete Design System PDF
+   ============================================================ */
+
+:root {
+  /* --- Brand Colors --- */
+  --color-primary:        #2563EB;   /* Trust, intelligence, CTAs */
+  --color-primary-hover:  #1D4ED8;   /* Darker on hover */
+  --color-primary-light:  #DBEAFE;   /* Soft blue background */
+  --color-indigo:         #6366F1;   /* AI accent, Jarvis elements */
+  --color-indigo-hover:   #4F46E5;
+  --color-indigo-light:   #EEF2FF;
+
+  /* --- Neutrals --- */
+  --color-bg:             #F9FAFB;
+  --color-surface:        #FFFFFF;
+  --color-border:         #E5E7EB;
+  --color-text-primary:   #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-muted:     #9CA3AF;
+
+  /* --- Semantic --- */
+  --color-success:        #22C55E;
+  --color-warning:        #F59E0B;
+  --color-error:          #EF4444;
+  --color-info:           #3B82F6;
+
+  /* --- Jarvis Chat --- */
+  --jarvis-panel-width:   360px;
+  --jarvis-panel-height:  520px;
+  --jarvis-bubble-user:   var(--color-primary);
+  --jarvis-bubble-ai:     #F3F4F6;
+
+  /* --- Spacing (4px base) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* --- Border Radius --- */
+  --radius-btn:    10px;
+  --radius-input:  8px;
+  --radius-card:   14px;
+  --radius-bubble: 18px;
+
+  /* --- Shadows --- */
+  --shadow-card:    0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
+  --shadow-card-hover: 0 4px 16px 0 rgb(37 99 235 / 0.10);
+  --shadow-panel:   0 8px 32px 0 rgb(0 0 0 / 0.12);
+
+  /* --- Animation --- */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+  --ease-default:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   TAILWIND v4 THEME EXTENSION
+   ============================================================ */
+@theme inline {
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", monospace;
+
+  /* Brand palette mapped to Tailwind color utilities */
+  --color-brand-blue:          var(--color-primary);
+  --color-brand-blue-hover:    var(--color-primary-hover);
+  --color-brand-blue-light:    var(--color-primary-light);
+  --color-brand-indigo:        var(--color-indigo);
+  --color-brand-indigo-hover:  var(--color-indigo-hover);
+  --color-brand-indigo-light:  var(--color-indigo-light);
+
+  --color-surface:             var(--color-surface);
+  --color-bg:                  var(--color-bg);
+  --color-border:              var(--color-border);
+
+  --color-text-primary:        var(--color-text-primary);
+  --color-text-secondary:      var(--color-text-secondary);
+  --color-text-muted:          var(--color-text-muted);
+
+  --color-success:             var(--color-success);
+  --color-warning:             var(--color-warning);
+  --color-error:               var(--color-error);
+  --color-info:                var(--color-info);
+
+  /* Border radius tokens */
+  --radius-btn:    var(--radius-btn);
+  --radius-input:  var(--radius-input);
+  --radius-card:   var(--radius-card);
+}
+
+/* ============================================================
+   BASE RESET & BODY
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   GLOBAL UTILITY CLASSES
+   ============================================================ */
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--duration-base) var(--ease-default),
+              transform var(--duration-base) var(--ease-default);
+}
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-btn);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-default),
+              box-shadow var(--duration-fast) var(--ease-default);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 2px 8px rgb(37 99 235 / 0.30);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-btn);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-default);
+}
+.btn-secondary:hover {
+  background-color: var(--color-primary-light);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+.btn-ghost:hover {
+  color: var(--color-text-primary);
+}
+
+/* Input fields */
+.input {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-default),
+              box-shadow var(--duration-fast) var(--ease-default);
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
+}
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Jarvis chat bubbles */
+.bubble-user {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-bubble) var(--radius-bubble) 4px var(--radius-bubble);
+  padding: 10px 14px;
+  font-size: 14px;
+  max-width: 80%;
+  align-self: flex-end;
+}
+.bubble-jarvis {
+  background: var(--jarvis-bubble-ai);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-bubble) var(--radius-bubble) var(--radius-bubble) 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+  max-width: 85%;
+  align-self: flex-start;
+}
+
+/* AI Indigo accent tag */
+.ai-tag {
+  background: var(--color-indigo-light);
+  color: var(--color-indigo);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Typing dots animation */
+.typing-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  animation: blink 1.2s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.9); }
+  40%           { opacity: 1;   transform: scale(1.1); }
+}
+
+/* Smooth page entrance */
+.page-enter {
+  animation: fadeSlideIn var(--duration-slow) var(--ease-default) both;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast notifications */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--color-text-primary);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-panel);
+  animation: toastIn 200ms var(--ease-default) both;
+  z-index: 9999;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Focus ring (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
