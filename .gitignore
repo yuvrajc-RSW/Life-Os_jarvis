@@ -1,0 +1,22 @@
+# Next.js
+lifeos-app/.next/
+lifeos-app/out/
+
+# Production
+lifeos-app/build/
+
+# Dependency directories
+lifeos-app/node_modules/
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env*
+! .env.example
+
+# IDE files
+.vscode/
+.idea/

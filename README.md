@@ -1,1 +1,0 @@
-# Life-Os_jarvis
